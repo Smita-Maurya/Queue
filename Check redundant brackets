@@ -1,0 +1,30 @@
+#include<stack>
+bool checkRedundantBrackets(string expression) {
+	 
+	stack<char>  temp;
+
+	for(auto &ch : expression){
+		if(ch==')'){
+			char top =temp.top();
+			temp.pop();
+
+			bool flag = true;
+
+			while(!temp.empty() && top!='('){
+				if(top =='+' || top =='-' || top=='*' || top=='/')
+				flag= false;
+
+
+
+				top = temp.top();
+				temp.pop();
+			}
+			if(flag ==true)
+			return true;
+		}
+		else
+		temp.push(ch);
+	}
+
+	return false;
+}
